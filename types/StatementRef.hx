@@ -14,7 +14,7 @@ class StatementRef implements IUnique implements IObject
 		objectType = "StatementRef";
 	}
 	
-	function get_objectType():String 
+	public function get_objectType():String 
 	{
 		return objectType;
 	}

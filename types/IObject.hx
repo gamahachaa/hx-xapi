@@ -7,6 +7,7 @@ package xapi.types;
 
 interface IObject 
 {
-	public var objectType(get,null):String;
+	public var objectType(get, null):String;
+	function get_objectType():String;
 	
 }

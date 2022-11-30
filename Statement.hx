@@ -2,7 +2,7 @@ package xapi;
 import xapi.types.IActor;
 import xapi.types.IObject;
 import xapi.types.IUnique;
-import thx.DateTimeUtc;
+import thx.DateTime;
 
 /**
  * ...
@@ -22,18 +22,22 @@ class Statement implements IUnique
 	public function new(actor:IActor, verb:Verb, object:IObject, ?result:Result, ?context:Context)
 	{
 		attachments = null;
-		timestamp = DateTimeUtc.now().toString();
+		timestamp = DateTime.now().toString();
 		//trace(timestamp);
 		this.context = context;
 		this.result = result;
 		this.object = object;
 		this.verb = verb;
 		this.actor = actor;
+		if (object.objectType == "Agent" && context.platform != null)
+		{
+			throw 'The context\'s "platform" property MUST only be used if the Statement\'s Object is an Activity objectType=${object.objectType} context.platform = ${context.platform}';
+		}
 	}
 	public function reset()
 	{
 		attachments = null;
-		timestamp = DateTimeUtc.now().toString();
+		timestamp = DateTime.now().toString();
 		this.context = null;
 		this.result = null;
 		this.object = null;
@@ -96,4 +100,8 @@ class Statement implements IUnique
 	{
 
 	}
+	//static public function FROM_JSON(j:String)
+	//{
+		//if(Reflect.hasField
+	//}
 }

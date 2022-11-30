@@ -9,12 +9,14 @@ import xapi.types.IUnique;
  */
 class Group implements IUnique implements IActor
 {
-	var member(get, null):Array<Agent>;
+	public var member(get, null):Array<Agent>;
 	public var id(get, null):String;
-	public function new() 
+	public function new(?id:String, ?uri:String, ?members:Array<Agent>) 
 	{
+		this.id =  id;
+		this.uri = uri;
 		objectType = "Group";
-		member = new Array<Agent>();
+		this.member = members;
 	}
 	
 	
@@ -28,7 +30,7 @@ class Group implements IUnique implements IActor
 		return uri;
 	}
 	
-	function get_objectType():String 
+	public function get_objectType():String 
 	{
 		return objectType;
 	}

@@ -8,10 +8,13 @@ import xapi.types.IUnique;
  */
 class Verb implements IUnique
 {
+	public static inline var SUBMITED:String = "http://activitystrea.ms/schema/1.0/submit";
 	
 	////////////////////////// STATICS /////////////////////////////////////////////////////////////////
 	public static inline var VERB_RECIEVED:String = "http://activitystrea.ms/schema/1.0/receive";
 	public static inline var VERB_MENTORED:String = "http://id.tincanapi.com/verb/mentored";
+	public static inline var VERB_REVIEWD:String = "http://id.tincanapi.com/verb/reviewed";
+	public static inline var VERB_DISSMISSED:String = "http://id.tincanapi.com/verb/terminated-employment-with";
 	// A
 	public static var abandoned:Verb = new Verb("https://w3id.org/xapi/adl/verbs/abandoned");
 	public static var answered:Verb = new Verb("http://adlnet.gov/expapi/verbs/answered");
@@ -24,6 +27,7 @@ class Verb implements IUnique
 	public static var commented	:Verb = new Verb("http://adlnet.gov/expapi/verbs/commented");
 	public static var completed	:Verb = new Verb("http://adlnet.gov/expapi/verbs/completed");
 	public static var calibrated	:Verb = new Verb("https://w3id.org/xapi/dod-isd/verbs/calibrated");
+	public static var dismissed	:Verb = new Verb(VERB_DISSMISSED);
 	// E
 	public static var exited :Verb = new Verb("http://adlnet.gov/expapi/verbs/exited");
 	public static var experienced :Verb = new Verb("http://adlnet.gov/expapi/verbs/experienced");
@@ -45,10 +49,12 @@ class Verb implements IUnique
 	public static var preferred:Verb = new Verb("http://adlnet.gov/expapi/verbs/preferred");
 	public static var progressed:Verb = new Verb("http://adlnet.gov/expapi/verbs/progressed");
 	// R
+	public static var replaced:Verb = new Verb("http://activitystrea.ms/schema/1.0/replace");
 	public static var registered:Verb = new Verb("http://adlnet.gov/expapi/verbs/registered");
 	public static var responded:Verb = new Verb("http://adlnet.gov/expapi/verbs/responded");
 	public static var resolved:Verb = new Verb("http://activitystrea.ms/schema/1.0/resolve", ["en" => "resolved"] );
 	public static var recieved:Verb = new Verb(VERB_RECIEVED);
+	public static var reviewed:Verb = new Verb(VERB_REVIEWD);
 	public static var resumed:Verb = new Verb("http://adlnet.gov/expapi/verbs/resumed");
 	public static var recalled:Verb = new Verb("https://w3id.org/xapi/dod-isd/verbs/recalled");
 	// S
@@ -57,10 +63,12 @@ class Verb implements IUnique
 	public static var scored:Verb = new Verb("http://adlnet.gov/expapi/verbs/scored");
 	public static var shared:Verb = new Verb("http://adlnet.gov/expapi/verbs/shared");
 	public static var suspended:Verb = new Verb("http://adlnet.gov/expapi/verbs/suspended");
-	public static var submitted:Verb = new Verb("http://activitystrea.ms/schema/1.0/submit", ["en"=>"submitted"]);
+	public static var submitted:Verb = new Verb(SUBMITED);
 	
 	// T
 	public static var terminated:Verb = new Verb("http://adlnet.gov/expapi/verbs/terminated");
+	//U
+	public static var updated:Verb = new Verb("http://activitystrea.ms/schema/1.0/update");
 	// V
 	public static var voided:Verb = new Verb("http://adlnet.gov/expapi/verbs/voided");
 	// W

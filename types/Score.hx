@@ -20,7 +20,13 @@ class Score
 		this.raw = raw;
 		scaled = max==0?0:raw / max;
 	}
-	
+	public function reset()
+	{
+		 raw = 0;
+		 max = 100;
+		 min = 0;
+		 scaled = 0.0;
+	}
 	function get_scaled():Float 
 	{
 		//return Math.floor( scaled * 100 ) / 100;

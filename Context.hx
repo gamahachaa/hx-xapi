@@ -18,9 +18,10 @@ class Context
 {
 	@:isVar public var language(get, set):String;
 	public var extensions:Map<String,Dynamic>;
-	public var statement:StatementRef;
+	@:isVar public var statement(get, set):StatementRef;
 	@:isVar public var platform(get, set):String;
 	public var revision:String;
+	public var team(get, null):Group;
 	public var contextActivities(get, null):Map<String, Array<Map<String,String>>>;
 	@:isVar public var instructor(get, set):IActor;
 	public var registration(get, null):String;
@@ -42,6 +43,7 @@ class Context
 		this.statement = statement;
 		this.platform = platform;
 		this.revision = revision;
+		this.team = team;
 		//trace(contextActivities);
 		/**
 		 * @todo validate map keys againts enum
@@ -50,6 +52,28 @@ class Context
 		initContextActivities();
 		this.instructor = instructor;
 		this.registration = Standards.UUID.match(uuid) || uuid == null ? uuid : throw 'Context.new :: uuid "$uuid" is not valid UUID';
+		
+	}
+	public function clone()
+	{
+		var instruc = if (instructor.objectType == "Agent") {
+			new Agent(cast(instructor, Agent).mbox, cast(instructor, Agent).name);
+		}
+		else{
+			new Group(cast(instructor, Group).id, cast(instructor, Group).uri, cast(instructor, Group).member);
+		};
+		return new Context(
+			this.registration, 
+			instruc, 
+			team == null ? null : new Group(team.id, team.uri, team.member), 
+			cast(contextActivities.copy()), 
+			revision, 
+			platform, 
+			language, 
+			statement == null ? null: new StatementRef(statement.id), 
+			cast(extensions.copy())
+		);
+		
 		
 	}
 	public function reset()
@@ -140,8 +164,23 @@ class Context
 		return instructor;
 	}
 	
+	function get_team():Group 
+	{
+		return team;
+	}
+	
 	function set_instructor(value:IActor):IActor 
 	{
 		return instructor = value;
+	}
+	
+	function get_statement():StatementRef 
+	{
+		return statement;
+	}
+	
+	function set_statement(value:StatementRef):StatementRef 
+	{
+		return statement = value;
 	}
 }

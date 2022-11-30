@@ -21,7 +21,12 @@ class Result
 	 * @todo UTILS helpers
 	 * standard library validators
 	 */
-		this.duration = duration == null ? toISO8601Duration(0) : toISO8601Duration(duration);
+		//this.duration = duration == null ? toISO8601Duration(0) : toISO8601Duration(duration);
+		if (duration != null)
+		{
+			toISO8601Duration(duration);
+		}
+		//this.duration = duration == null ? null : toISO8601Duration(duration);
 		this.response = response;
 		this.completion = completion;
 		this.success = success;
@@ -29,7 +34,7 @@ class Result
 		this.extensions = extensions;
 		
 	}
-	function toISO8601Duration( timestamp :Float ):String
+	public function toISO8601Duration( timestamp :Float ):Void
 	{
 		//var ms = ;
 		var s = 1000;
@@ -61,7 +66,7 @@ class Result
 		t.push(((temp - modulo) / s));
 		//trace(timestamp, temp, t );
 		temp = modulo;
-		return Std.string( 'P${t[0]}DT${t[1]}H${t[2]}M${t[3]}S' );
+		duration = Std.string( 'P${t[0]}DT${t[1]}H${t[2]}M${t[3]}S' );
 		
 	}
 	function get_score():Score 
@@ -87,6 +92,11 @@ class Result
 	function get_duration():String 
 	{
 		return duration;
+	}
+	
+	function set_duration(value:String):String 
+	{
+		return duration = value;
 	}
 	
 	function get_completion():Bool 

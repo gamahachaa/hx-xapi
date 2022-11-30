@@ -26,7 +26,7 @@ class Activity implements IObject implements IUnique
 	{
 		return id;
 	}
-	function get_objectType():String 
+	public function get_objectType():String 
 	{
 		return objectType;
 	}

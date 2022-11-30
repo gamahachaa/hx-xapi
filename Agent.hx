@@ -41,6 +41,10 @@ class Agent implements IActor
 		
 
 	}
+	public function getSimpleEmail():String
+	{
+		return StringTools.replace(mbox, "mailto:","");
+	}
 	public function getActorUrl():String
 	{
 		return "&actor=" + StringTools.urlEncode('{"name":"$name","mbox":"$mbox"}');
@@ -67,9 +71,18 @@ class Agent implements IActor
 		return mbox;
 	}
 	
-	function get_objectType():String 
+	public function get_objectType():String 
 	{
 		return objectType;
+	}
+	public static function FROM_JSON(json:Dynamic):Agent
+	{
+		return try{
+			  new Agent(Reflect.field(json, "mbox"), Reflect.field(json, "name"));
+		}
+		catch(e){
+			null;
+		}
 	}
 }
 /**
