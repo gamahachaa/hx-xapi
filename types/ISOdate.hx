@@ -24,12 +24,12 @@ abstract ISOdate(String) to String
   }
   inline static public function fromDate(date:Date) {
 	  var d = '${date.getFullYear()}-${(date.getMonth()+1).customFormat("00")}-${date.getDate().customFormat("00")}T${date.getHours().customFormat("00")}:${date.getMinutes().customFormat("00")}:${date.getSeconds().customFormat("00")}.00Z';
-	  trace(d);
+	  //trace(d);
     return new ISOdate(d);
   }
   inline static public function fromDateTime(date:DateTime) {
 	  var d = '${date.year}-${(date.month+1).customFormat("00")}-${date.day.customFormat("00")}T${date.hour.customFormat("00")}:${date.minute.customFormat("00")}:${date.second.customFormat("00")}.00Z';
-	  trace(d);
+	  //trace(d);
     return new ISOdate(d);
   }
 }
