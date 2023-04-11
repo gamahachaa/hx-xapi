@@ -38,8 +38,15 @@ class Agent implements IActor
 		if (! Standards.EMAIL.match ( mbox ))
 			throw new BadEmailFormat( mbox );
 		
+	}
+	inline public function prepareMbox(m:String):String
+	{
+		var mb = "" ;
+		if( m.indexOf("mailto:")  == -1)
+			mb = "mailto:";
+		mb += StringTools.trim(m).toLowerCase();
+		return mb;
 		
-
 	}
 	public function getSimpleEmail():String
 	{
